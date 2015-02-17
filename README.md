@@ -4,7 +4,7 @@ This is a script that transforms the official Fedora armhfp images into a disk i
 
 ## Usage
 
-Adjust the following variables to suit your case
+By default, mkimage.sh will create a Fedora minimal image with a 50MB boot filesystem and a 900MB root filesystem.  If you wish to change these defaults, create a ```settings.conf``` file using ```settings.conf.example``` as a template.
 
 ```bash
 IMAGEFILE="Fedora-Minimal-armhfp-21-5-sda.raw"
