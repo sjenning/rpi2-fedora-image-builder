@@ -13,7 +13,7 @@ BOOTSIZE=50
 ROOTSIZE=900
 ```
 
-Then simply run the script as root
+Then simply run the script as root (root privileges are needed to mount filesystem images as loop block devices)
 
 ```bash
 sudo ./mkimage
