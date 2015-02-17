@@ -7,7 +7,7 @@ This is a script that transforms the official Fedora armhfp images into a disk i
 By default, mkimage.sh will create a Fedora minimal image with a 50MB boot filesystem and a 900MB root filesystem.  If you wish to change these defaults, create a ```settings.conf``` file using ```settings.conf.example``` as a template.
 
 ```bash
-IMAGEFILE="Fedora-Minimal-armhfp-21-5-sda.raw"
+IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/21/Images/armhfp/Fedora-Minimal-armhfp-21-5-sda.raw.xz"
 # size in MB
 BOOTSIZE=50
 ROOTSIZE=900
@@ -20,7 +20,7 @@ sudo ./mkimage
 ```
 
 The script
-* Downloads the official IMAGEFILE image from a Fedora mirror
+* Downloads the official image from IMAGEURL
 * Decompresses the official image
 * Strips the root filesystem image out of the official image (root.img)
 * Creates a vfat boot partition image (boot.img) of size BOOTSIZE

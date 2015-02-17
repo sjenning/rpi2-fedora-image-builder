@@ -2,7 +2,7 @@
 
 #set -x
 
-IMAGEFILE="Fedora-Minimal-armhfp-21-5-sda.raw"
+IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/21/Images/armhfp/Fedora-Minimal-armhfp-21-5-sda.raw.xz"
 # size in MB
 BOOTSIZE=50
 ROOTSIZE=900
@@ -13,6 +13,8 @@ else
 	echo "Using settings.conf"
 	. settings.conf
 fi
+IMAGEFILE=${IMAGEURL##*/}
+IMAGEFILE=${IMAGEFILE%.*}
 echo "BOOTSIZE is $BOOTSIZE MB"
 echo "ROOTSIZE is $ROOTSIZE MB"
 echo "IMAGEFILE is $IMAGEFILE"
@@ -25,7 +27,7 @@ fi
 
 if [[ ! -f $IMAGEFILE.xz ]]; then
 	echo "Downloading image..."
-	wget http://mirror.pnl.gov/fedora/linux/releases/21/Images/armhfp/$IMAGEFILE.xz || exit 1
+	wget $IMAGEURL || exit 1
 fi
 if [[ ! -f $IMAGEFILE ]]; then
 	echo "Extracting image..."
