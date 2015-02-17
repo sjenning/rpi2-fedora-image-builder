@@ -31,5 +31,5 @@ The script
 * Generates an /etc/fstab
 * Creates a disk image file, partitions it, and copies the boot and root filesystem images into the created partitions
 
-NOTE: This will take a considerable amount of disk space and time depending on your disk and internet speeds.  If the variables are unchanged, the disk space requirement is 4.4GB.
+NOTE: This will take a considerable amount of disk space and time depending on your disk and internet speeds.  If default settings are used, the disk space requirement is 4.4GB.
 
