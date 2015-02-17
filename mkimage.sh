@@ -16,8 +16,6 @@ fi
 echo "BOOTSIZE is $BOOTSIZE MB"
 echo "ROOTSIZE is $ROOTSIZE MB"
 echo "IMAGEFILE is $IMAGEFILE"
-exit 0
-
 
 rm -f root.img boot.img $IMAGEFILE.img
 if [[ $(id -u) -ne 0 ]]; then
