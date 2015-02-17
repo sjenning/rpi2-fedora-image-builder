@@ -1,0 +1,5 @@
+IMAGEFILE="Fedora-Minimal-armhfp-21-5-sda.raw"
+# size in MB
+BOOTSIZE=50
+ROOTSIZE=900
+COMPRESS=0

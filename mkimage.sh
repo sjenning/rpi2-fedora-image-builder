@@ -6,9 +6,18 @@ IMAGEFILE="Fedora-Minimal-armhfp-21-5-sda.raw"
 # size in MB
 BOOTSIZE=50
 ROOTSIZE=900
-IMAGESIZE=$((BOOTSIZE + ROOTSIZE + 1))
-
 COMPRESS=0
+if [[ ! -f settings.conf ]]; then
+	echo "No settings.conf found, using defaults"
+else
+	echo "Using settings.conf"
+	. settings.conf
+fi
+echo "BOOTSIZE is $BOOTSIZE MB"
+echo "ROOTSIZE is $ROOTSIZE MB"
+echo "IMAGEFILE is $IMAGEFILE"
+exit 0
+
 
 rm -f root.img boot.img $IMAGEFILE.img
 if [[ $(id -u) -ne 0 ]]; then
@@ -29,6 +38,7 @@ ROOTOFFSET=$(partx $IMAGEFILE | tail -n 1 | awk '{print $2}')
 echo "Extracting rootfs..."
 dd if=$IMAGEFILE bs=512 skip=$ROOTOFFSET of=root.img &> /dev/null || exit 1
 
+IMAGESIZE=$((BOOTSIZE + ROOTSIZE + 1))
 BOOTSIZE_MB="$BOOTSIZE"M
 ROOTSIZE_MB="$ROOTSIZE"M
 IMAGESIZE_MB="$IMAGESIZE"M
