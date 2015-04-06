@@ -34,3 +34,13 @@ The script
 NOTE: This will take a considerable amount of disk space and time depending on your disk and internet speeds.  If default settings are used, the disk space requirement is 4.4GB.
 
 To remove all temporary resources needed for building, use the ```clean.sh``` script
+
+### fbturbo
+
+The fbturbo driver (https://github.com/ssvb/xf86-video-fbturbo) allows for basic 2D hardware acceleration using the VideoCore GPU.  This improves performance for things like window drawing.  To have the driver included in the final image, copy these files from the ```sample-resources``` into the ```resources``` directory
+
+```cp sample-resources/xorg.conf sample-resources/fbturbo_drv.so resources```
+
+### config.txt
+
+You can add your custom **config.txt** to the ```resources``` directory and it will be included in the boot filesystem of the final image
