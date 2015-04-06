@@ -1,5 +1,6 @@
 Fedora*
 boot.img
 root.img
-firmware/
+resources
+mnt
 settings.conf

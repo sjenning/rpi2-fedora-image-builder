@@ -33,3 +33,4 @@ The script
 
 NOTE: This will take a considerable amount of disk space and time depending on your disk and internet speeds.  If default settings are used, the disk space requirement is 4.4GB.
 
+To remove all temporary resources needed for building, use the ```clean.sh``` script
