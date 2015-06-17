@@ -77,9 +77,16 @@ sudo umount $MNTDIR || exit 1
 
 # prepare root partition
 echo "Preparing root partition..."
-e2fsck -fp root.img >/dev/null || exit 1
-resize2fs root.img $ROOTSIZE_MB >/dev/null || exit 1
-truncate -s $ROOTSIZE_MB root.img || exit 1
+if file root.img | grep XFS; then
+	echo "Root filesystem is XFS, resize is not supported"
+	ROOTSIZE="$XFSROOTSIZE"
+	ROOTSIZE_MB="$ROOTSIZE"M
+	echo "ROOTSIZE changed to $ROOTSIZE MB"
+else
+	e2fsck -fp root.img >/dev/null || exit 1
+	resize2fs root.img $ROOTSIZE_MB >/dev/null || exit 1
+	truncate -s $ROOTSIZE_MB root.img || exit 1
+fi
 echo "Mounting root filesystem..."
 sudo mount root.img $MNTDIR || exit 1
 blkid -o export root.img > uuid
