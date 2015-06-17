@@ -11,8 +11,8 @@ export MNTDIR="$SCRIPTDIR/mnt"
 
 IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/22/Images/armhfp/Fedora-Minimal-armhfp-22-3-sda.raw.xz"
 # size in MB
-BOOTSIZE=50
-ROOTSIZE=900
+BOOTSIZE=100
+ROOTSIZE=1800
 COMPRESS=0
 if [[ ! -f settings.conf ]]; then
 	echo "No settings.conf found, using defaults"
