@@ -44,3 +44,7 @@ The fbturbo driver (https://github.com/ssvb/xf86-video-fbturbo) allows for basic
 ### config.txt
 
 You can add your custom **config.txt** to the ```resources``` directory and it will be included in the boot filesystem of the final image
+
+### Weird Gotchas
+
+If you encounter a "mountpoint busy" error when mkimage.sh tries to umount one of the partitions, Gnome (or some other program listen for new mountpoint) might be interfering.  You can disable that functionality, or, as a quick workaround, add a "sleep 3" before the umount lines in mkimage.sh to give that program time to finish so the umount can succeed.
