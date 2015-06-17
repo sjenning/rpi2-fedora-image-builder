@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #set -x
+set -u
 
 SCRIPTDIR=$(dirname $(readlink -f $0))
 export RESOURCEDIR="$SCRIPTDIR/resources"
@@ -41,13 +42,9 @@ ROOTOFFSET=$(partx $IMAGEFILE | tail -n 1 | awk '{print $2}')
 echo "Extracting rootfs..."
 dd if=$IMAGEFILE bs=512 skip=$ROOTOFFSET of=root.img &> /dev/null || exit 1
 
-IMAGESIZE=$((BOOTSIZE + ROOTSIZE + 1))
-BOOTSIZE_MB="$BOOTSIZE"M
-ROOTSIZE_MB="$ROOTSIZE"M
-IMAGESIZE_MB="$IMAGESIZE"M
-
 # create boot partition
 echo "Creating boot partition..."
+BOOTSIZE_MB="$BOOTSIZE"M
 truncate -s $BOOTSIZE_MB boot.img || exit 1
 mkfs.vfat boot.img > /dev/null || exit 1
 echo "Mounting boot filesystem..."
@@ -77,13 +74,14 @@ sudo umount $MNTDIR || exit 1
 
 # prepare root partition
 echo "Preparing root partition..."
-if file root.img | grep XFS; then
+if file root.img | grep XFS &>/dev/null; then
 	echo "Root filesystem is XFS, resize is not supported"
-	ROOTSIZE="$XFSROOTSIZE"
+	ROOTSIZE="$(du -m root.img | cut -f1)"
 	ROOTSIZE_MB="$ROOTSIZE"M
 	echo "ROOTSIZE changed to $ROOTSIZE MB"
 else
 	e2fsck -fp root.img >/dev/null || exit 1
+	ROOTSIZE_MB="$ROOTSIZE"M
 	resize2fs root.img $ROOTSIZE_MB >/dev/null || exit 1
 	truncate -s $ROOTSIZE_MB root.img || exit 1
 fi
@@ -118,6 +116,7 @@ sudo umount $MNTDIR || exit 1
 
 # create image
 echo "Creating image..."
+IMAGESIZE_MB="$((BOOTSIZE + ROOTSIZE + 1))M"
 truncate -s $IMAGESIZE_MB $IMAGEFILE.img || exit 1
 parted $IMAGEFILE.img mklabel msdos 2>/dev/null || exit 1
 parted $IMAGEFILE.img mkpart primary fat16 1MiB $((BOOTSIZE + 1))MiB 2>/dev/null || exit 1
