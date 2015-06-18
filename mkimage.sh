@@ -38,7 +38,7 @@ if [[ ! -f $IMAGEFILE ]]; then
 	xzdec $IMAGEFILE.xz > $IMAGEFILE || exit 1
 fi
 
-ROOTOFFSET=$(partx $IMAGEFILE | tail -n 1 | awk '{print $2}')
+ROOTOFFSET=$(partx --show $IMAGEFILE | tail -n 1 | awk '{print $2}')
 echo "Extracting rootfs..."
 dd if=$IMAGEFILE bs=512 skip=$ROOTOFFSET of=root.img &> /dev/null || exit 1
 
