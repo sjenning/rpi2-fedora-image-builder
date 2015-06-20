@@ -15,12 +15,17 @@ IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/23/Images/armhfp/Fedora-Mi
 BOOTSIZE=100
 ROOTSIZE=1800
 COMPRESS=0
+
 if [[ ! -f settings.conf ]]; then
 	echo "No settings.conf found, using defaults"
 else
 	echo "Using settings.conf"
 	. settings.conf
 fi
+
+# export settings so subshells can access them
+export DISABLE_INITIAL_SETUP
+
 IMAGEFILE=${IMAGEURL##*/}
 IMAGEFILE=${IMAGEFILE%.*}
 echo "BOOTSIZE is $BOOTSIZE MB"
@@ -134,4 +139,3 @@ if [[ $COMPRESS -ne 0 ]]; then
 fi
 
 echo "$IMAGEFILE.img created successfully."
-

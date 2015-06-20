@@ -1,5 +1,12 @@
 IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/23/Images/armhfp/Fedora-Minimal-armhfp-23-10-sda.raw.xz"
+
 # size in MB
 BOOTSIZE=100
 ROOTSIZE=1800
+
+# zero remaining space (for better compression)?
 COMPRESS=0
+
+# don't run initial-setup on first boot
+# https://fedoraproject.org/wiki/InitialSetup
+#DISABLE_INITIAL_SETUP=1
