@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$RESOURCEDIR"
-if [[ -d firmware ]]; then
+if [[ -d firmware/.git ]]; then
 	echo "Updating firmware repo..."
 	cd firmware || exit 1
 	git pull > /dev/null || exit 1
