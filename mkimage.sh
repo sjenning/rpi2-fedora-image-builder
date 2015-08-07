@@ -126,7 +126,7 @@ dd if=root.img of=$IMAGEFILE.img obs=1M seek=$((BOOTSIZE + 1)) &> /dev/null || e
 
 if [[ $COMPRESS -ne 0 ]]; then
 	echo "Compressing final image (might take a while)..."
-	xz $IMAGEFILE.img || exit 1
+	xz -f $IMAGEFILE.img || exit 1
 fi
 
 echo "$IMAGEFILE.img created successfully."
