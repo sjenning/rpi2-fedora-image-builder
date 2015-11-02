@@ -70,6 +70,8 @@ if [[ $COMPRESS -ne 0 ]]; then
 	rm -f $MNTDIR/zeroes
 fi
 echo "Unmounting boot filesystem..."
+# wait arbitrary, but usually sufficient, time for some file managers to stop using the volume
+sleep 3
 sudo umount $MNTDIR || exit 1
 
 # prepare root partition
@@ -112,6 +114,8 @@ if [[ $COMPRESS -ne 0 ]]; then
 	rm -f $MNTDIR/zeroes
 fi
 echo "Unmounting root filesystem..."
+# wait arbitrary, but usually sufficient, time for some file managers to stop using the volume
+sleep 3
 sudo umount $MNTDIR || exit 1
 
 # create image
