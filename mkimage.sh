@@ -10,7 +10,7 @@ export MNTDIR="$SCRIPTDIR/mnt"
 [[ -d "$RESOURCEDIR" ]] || mkdir "$RESOURCEDIR" || exit 1
 [[ -d "$MNTDIR" ]] || mkdir "$MNTDIR" || exit 1
 
-IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/22/Images/armhfp/Fedora-Minimal-armhfp-22-3-sda.raw.xz"
+IMAGEURL="http://mirror.pnl.gov/fedora/linux/releases/23/Images/armhfp/Fedora-Minimal-armhfp-23-10-sda.raw.xz"
 # size in MB
 BOOTSIZE=100
 ROOTSIZE=1800
