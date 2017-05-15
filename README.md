@@ -1,3 +1,14 @@
+NOTE: Fedora now produces official images for the Raspberry Pi now.  This project is no longer maintained.
+
+Server:
+https://mirrors.kernel.org/fedora/releases/25/Server/armhfp/images/
+
+Workstation:
+https://mirrors.kernel.org/fedora/releases/25/Workstation/armhfp/images/
+
+Other spins:
+https://mirrors.kernel.org/fedora/releases/25/Spins/armhfp/images/
+
 # Fedora Image Builder for Raspberry Pi 2
 
 This is a script that transforms the official Fedora armhfp images into a disk image that is bootable by the Raspberry Pi 2.
